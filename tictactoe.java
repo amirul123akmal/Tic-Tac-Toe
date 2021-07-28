@@ -66,6 +66,12 @@ public class tictactoe{
                 break;
             }
         }
+        try{
+            game.saves_file();
+        }
+        catch(Exception e){
+            print.println(e + "\nAn error occured upon saving the file");
+        }
         input.close();
     }
 }

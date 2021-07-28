@@ -1,4 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 
 public class games {
     private static PrintStream print = System.out;
@@ -131,18 +134,21 @@ public class games {
         return 0;
     }
 
-    void player_winner(int num){
+    String player_winner(int num){
         clearConsole();
         if (num == 1){
             print.println("\nCongratulations on " + player1 + " for wining ths round");
+            return player1;
         }
         else{
             print.println("\nCongratulations on " + player2 + " for wining ths round");
+            return player2;
         }
     }
 
+    private int pointer;
     int winner(){
-        int pointer = check_winner();
+        pointer = check_winner();
         if (pointer == 0){
             return 0;
         }
@@ -153,4 +159,14 @@ public class games {
         return 0;
     }
 
+    // https://www.java67.com/2015/07/how-to-append-text-to-existing-file-in-java-example.html
+    void saves_file() throws Exception{
+        //                          the file name, append mode
+        FileWriter fw = new FileWriter("History.txt",true);
+        PrintWriter pw = new PrintWriter(fw);
+        BufferedWriter file = new BufferedWriter(pw);
+        file.write("Players : " + player1 +", " + player2 + "\n");
+        file.write("Winner : " + player_winner(pointer) + "\n");
+        file.close();
+    }
 }
