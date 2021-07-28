@@ -1,2 +1,2 @@
-javac tictactoe.java
-java tictactoe
+javac mainWindow.java
+java mainWindow
