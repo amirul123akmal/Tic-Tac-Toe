@@ -8,8 +8,12 @@ public class games {
         {',',',',','},
         {',',',',','}
     };
+
     void welcome(){
         // Welcome message
+        print.println("Welcome to Amirul's homemade Tic-Tac-Toe java games");
+        print.println("This game is 2 players game");
+        print.println("please enjoy...");
     }
 
     void map(){
@@ -17,7 +21,7 @@ public class games {
         for(int i = 0 ; i < 3 ; i++){
             print.println("--------");
             for (int j = 0 ; j < 3 ; j++){
-                print.print("|"+mapping[i][j]);
+                print.print("|" + mapping[i][j]);
             }
             print.print("|\n");
         }
@@ -58,11 +62,10 @@ public class games {
     void insert(int pos,short player){
         if(checker(pos)){
             if (player == 0){
-                print.println("Player = 0");
                 if(pos < 4){
                     mapping[0][pos-1] = 'X';
                 }
-                else if((pos > 3)){
+                else if((pos > 3 && pos < 7)){
                     mapping[1][pos-4] = 'X';
                 }
                 else if((pos > 6)){
@@ -70,11 +73,10 @@ public class games {
                 }
             }
             else{
-                print.println("Player = 1");
                 if(pos < 4 ){
                     mapping[0][pos-1] = 'O';
                 }
-                else if((pos > 3)){
+                else if((pos > 3 && pos < 7)){
                     mapping[1][pos-4] = 'O';
                 }
                 else if((pos > 6)){
@@ -100,10 +102,10 @@ public class games {
             }
 
             // Vertical
-            if((mapping[0][i] == mapping[0][i] && mapping[0][i] == mapping[0][i] ) && ( mapping[0][i] == 'X' )){
+            if((mapping[0][i] == mapping[1][i] && mapping[1][i] == mapping[2][i] ) && ( mapping[0][i] == 'X' )){
                 return 1;
             }
-            if((mapping[0][i] == mapping[0][i] && mapping[0][i] == mapping[0][i] ) && ( mapping[0][i] == 'O' )){
+            if((mapping[0][i] == mapping[1][i] && mapping[1][i] == mapping[2][i] ) && ( mapping[0][i] == 'O' )){
                 return 2;
             }
 
@@ -126,7 +128,28 @@ public class games {
         if((mapping[0][2] == mapping[1][1] && mapping[1][1] == mapping[2][0] ) && ( mapping[2][0] == 'O' )){
             return 2;
         }
-        
+        return 0;
+    }
+
+    void player_winner(int num){
+        clearConsole();
+        if (num == 1){
+            print.println("\nCongratulations on " + player1 + " for wining ths round");
+        }
+        else{
+            print.println("\nCongratulations on " + player2 + " for wining ths round");
+        }
+    }
+
+    int winner(){
+        int pointer = check_winner();
+        if (pointer == 0){
+            return 0;
+        }
+        else if (pointer == 1 || pointer == 2){
+            player_winner(pointer);
+            return 1;
+        }
         return 0;
     }
 

@@ -11,7 +11,12 @@ public class tictactoe{
         games game = new games();
         Scanner input = new Scanner(System.in);
 
+        // Variable Initliaziation
+        int pos; 
+        short switcher = 0;
+
         // Start
+        game.clearConsole();
         game.welcome();
 
         // Req Player Name
@@ -21,12 +26,8 @@ public class tictactoe{
         game.player2 = input.nextLine(); 
 
         while(true){
-            // Variable Initliaziation
-            int pos; 
-            short switcher = 0;
-            int pointer;
-
             // the map
+            game.clearConsole();
             game.map();         
             
             game.clearConsole();
@@ -53,27 +54,16 @@ public class tictactoe{
                         switcher = 0;
                     }
                 }
-                else{
-                    print.println("are you want to exit the game (y/n)?");
-                    try{
-                        if(input.nextLine() == "y"){
-                            break;
-                        }
-                    }
-                    catch(Exception b){
-                        break;
-                    }
-                }
             }
             catch(Exception e){
                 print.print(e + "\nYou need to enter a number between 1 and 10");
             }
-            pointer = game.check_winner();
-            if(pointer == 0){
+            pos = game.winner();
+            if(pos == 0){
                 continue;
             }
-            else if (pointer == 1){
-
+            else{
+                break;
             }
         }
         input.close();
